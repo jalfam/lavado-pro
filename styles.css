@@ -1,0 +1,31 @@
+*{box-sizing:border-box}html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#0d1220;background:#f6f8fb}
+header{padding:20px 16px;background:#0b6cff;color:#fff;position:sticky;top:0;z-index:10}
+h1{margin:0;font-size:20px}.sub{margin:4px 0 0;opacity:.9}
+main{padding:16px;max-width:720px;margin:0 auto}
+.card{background:#fff;border-radius:14px;box-shadow:0 8px 24px rgba(12,36,99,.08);padding:16px;margin:12px 0}
+.card.muted{background:#f7fbff;border-left:4px solid #0ba9ff}
+h2{font-size:18px;margin:4px 0 12px}
+.row{margin:12px 0}
+label{display:block;margin-bottom:6px;color:#2a3354}
+input[type=text]{width:100%;padding:12px;border:1px solid #d7dbe7;border-radius:10px;font-size:16px}
+.primary,.secondary,.ghost{appearance:none;border:none;border-radius:12px;padding:12px 14px;font-weight:600}
+.primary{background:#0b6cff;color:#fff}
+.secondary{background:#eef2ff;color:#0b2cff}
+.ghost{background:transparent;color:#0b2cff}
+button+button{margin-left:8px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.chips button{border:1px solid #d7dbe7;background:#fff;border-radius:999px;padding:10px 12px;text-align:center}
+.chips button.active{border-color:#0b6cff;background:#edf3ff;color:#0b2cff}
+.segmented{display:flex;background:#f0f4ff;border-radius:12px;padding:4px;gap:4px}
+.segmented button{flex:1;background:transparent;border:none;padding:10px;border-radius:10px}
+.segmented button.active{background:#fff;color:#0b2cff;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.tips{margin-top:10px;background:#f7fbff;border-left:4px solid #0ba9ff;padding:10px;border-radius:8px}
+.details summary{cursor:pointer;color:#3343cc}
+.ctaRow{display:flex;justify-content:space-between;margin-top:14px}
+footer{position:sticky;bottom:0;background:#f6f8fb;padding:12px 16px;display:flex;gap:8px;justify-content:space-between;border-top:1px solid #e7ebf5}
+.hint{font-size:12px;color:#5a6}
+#recentsCard .grid{grid-template-columns:repeat(1,1fr)}
+#recents .recItem{display:flex;justify-content:space-between;align-items:center;border:1px solid #d7dbe7;border-radius:12px;padding:10px;background:#fff}
+#recents .recMeta{font-size:14px;color:#334}
+#recents .recBtn{font-weight:600;border:none;background:#eef2ff;color:#0b2cff;border-radius:10px;padding:8px 10px}
+@media(min-width:480px){.grid{grid-template-columns:repeat(3,1fr)}#recentsCard .grid{grid-template-columns:repeat(2,1fr)}}

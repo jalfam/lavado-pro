@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Asistente de Lavado — Pro</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#0b6cff">
+</head>
+<body>
+<header>
+  <h1>Asistente de Lavado</h1>
+  <p class="sub">Samsung WF22C6400AV/AX</p>
+</header>
+
+<main>
+  <section id="wizard">
+    <div class="card step" data-step="1">
+      <h2>1) ¿Qué vas a lavar?</h2>
+      <div class="grid chips" id="catGroup"></div>
+      <div class="row">
+        <label for="desc">Descripción (opcional)</label>
+        <input id="desc" type="text" placeholder="Ej. 2 cobijas con aceite, color claro" list="suggestions">
+        <datalist id="suggestions"></datalist>
+        <p class="hint">Puedes elegir un chip o escribir. Si solo escribes, se infiere la categoría. También prueba las sugerencias.</p>
+      </div>
+
+      <div class="row" id="recentsCard" hidden>
+        <label>Usa uno de tus últimos lavados</label>
+        <div class="grid" id="recents"></div>
+      </div>
+
+      <button class="primary next">Siguiente</button>
+    </div>
+
+    <div class="card step" data-step="2" hidden>
+      <h2>2) Tela y detalles</h2>
+      <div class="grid chips" id="fabricGroup"></div>
+      <div class="row">
+        <label>Nivel de suciedad</label>
+        <div class="segmented" id="soil">
+          <button data-soil="light" class="active">Ligero</button>
+          <button data-soil="normal">Normal</button>
+          <button data-soil="heavy">Pesado</button>
+        </div>
+      </div>
+      <div class="row"><label><input type="checkbox" id="oil"> Tiene aceites (p. ej., masaje/cocina)</label></div>
+      <button class="secondary prev">Atrás</button>
+      <button class="primary next">Siguiente</button>
+    </div>
+
+    <div class="card step" data-step="3" hidden>
+      <h2>3) Preferencias</h2>
+      <div class="row">
+        <label>¿Vapor (Steam)?</label>
+        <div class="segmented" id="steam">
+          <button data-steam="auto" class="active">Auto</button>
+          <button data-steam="on">Sí</button>
+          <button data-steam="off">No</button>
+        </div>
+      </div>
+      <div class="row">
+        <label>¿Hygiene Steam?</label>
+        <div class="segmented" id="hsteam">
+          <button data-hsteam="auto" class="active">Auto</button>
+          <button data-hsteam="on">Forzar</button>
+          <button data-hsteam="off">No</button>
+        </div>
+        <p class="hint">Usa Hygiene Steam para desinfección intensa en algodón/toallas/trapos (no en delicados, modal o satín).</p>
+      </div>
+      <div class="row">
+        <label>¿Enjuague extra?</label>
+        <div class="segmented" id="rinse">
+          <button data-rinse="auto" class="active">Auto</button>
+          <button data-rinse="on">Sí</button>
+          <button data-rinse="off">No</button>
+        </div>
+      </div>
+      <div class="row"><label><input type="checkbox" id="smartthings"> Mostrar preset sugerido para SmartThings</label></div>
+      <button class="secondary prev">Atrás</button>
+      <button class="primary generate">Ver recomendaciones</button>
+    </div>
+
+    <div class="card step" data-step="4" hidden>
+      <h2>Resultado</h2>
+      <div id="result"></div>
+      <div class="tips" id="tips"></div>
+      <details class="details"><summary>Explicación</summary><div id="explain"></div></details>
+      <div class="card muted" id="drumReminder" hidden></div>
+      <div class="ctaRow">
+        <button class="secondary prev">Editar</button>
+        <button class="primary new">Nuevo lavado</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="maintenance">
+    <h2>Mantenimiento</h2>
+    <ul>
+      <li>Ejecuta <strong>Drum Clean+</strong> cada 2–3 meses (uso normal).</li>
+      <li>Si lavas cobijas con aceite o <em>trapos de cocina</em>, corre <strong>Drum Clean+</strong> después de esa carga.</li>
+      <li>Evita suavizante en ropa deportiva y trapos; usa vinagre en el enjuague si necesitas suavidad.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <button id="share" class="ghost">Compartir</button>
+  <a id="install" class="ghost" href="#" hidden>Instalar</a>
+</footer>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(console.error);
+    });
+  }
+</script>
+<script src="app.js"></script>
+</body>
+</html>
