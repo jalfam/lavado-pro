@@ -14,7 +14,7 @@
 <body>
 <header>
   <h1>Asistente de Lavado</h1>
-  <p class="sub">Samsung WF22C6400AV/AX</p>
+  <p class="sub">Lavadora WF22C6400AV/AX • Secadora DVG24C6370V/AX</p>
 </header>
 
 <main>
@@ -26,14 +26,12 @@
         <label for="desc">Descripción (opcional)</label>
         <input id="desc" type="text" placeholder="Ej. 2 cobijas con aceite, color claro" list="suggestions">
         <datalist id="suggestions"></datalist>
-        <p class="hint">Puedes elegir un chip o escribir. Si solo escribes, se infiere la categoría. También prueba las sugerencias.</p>
+        <p class="hint">Elige un chip o escribe. Si solo escribes, se infiere la categoría.</p>
       </div>
-
       <div class="row" id="recentsCard" hidden>
-        <label>Usa uno de tus últimos lavados</label>
+        <label>Últimos lavados</label>
         <div class="grid" id="recents"></div>
       </div>
-
       <button class="primary next">Siguiente</button>
     </div>
 
@@ -56,7 +54,7 @@
     <div class="card step" data-step="3" hidden>
       <h2>3) Preferencias</h2>
       <div class="row">
-        <label>¿Vapor (Steam)?</label>
+        <label>¿Vapor (Steam) en lavadora?</label>
         <div class="segmented" id="steam">
           <button data-steam="auto" class="active">Auto</button>
           <button data-steam="on">Sí</button>
@@ -64,13 +62,12 @@
         </div>
       </div>
       <div class="row">
-        <label>¿Hygiene Steam?</label>
+        <label>¿Hygiene Steam (lavadora)?</label>
         <div class="segmented" id="hsteam">
           <button data-hsteam="auto" class="active">Auto</button>
           <button data-hsteam="on">Forzar</button>
           <button data-hsteam="off">No</button>
         </div>
-        <p class="hint">Usa Hygiene Steam para desinfección intensa en algodón/toallas/trapos (no en delicados, modal o satín).</p>
       </div>
       <div class="row">
         <label>¿Enjuague extra?</label>
@@ -80,7 +77,16 @@
           <button data-rinse="off">No</button>
         </div>
       </div>
-      <div class="row"><label><input type="checkbox" id="smartthings"> Mostrar preset sugerido para SmartThings</label></div>
+      <div class="row">
+        <label>Secadora</label>
+        <div class="segmented" id="dryerPref">
+          <button data-dryer="auto" class="active">Auto</button>
+          <button data-dryer="air">Secar al aire</button>
+          <button data-dryer="skip">No secar</button>
+        </div>
+        <p class="hint">“Auto” sugiere ciclo en tu DVG24C6370V/AX. “Secar al aire” da instrucciones sin secadora.</p>
+      </div>
+      <div class="row"><label><input type="checkbox" id="smartthings"> Mostrar presets sugeridos (SmartThings)</label></div>
       <button class="secondary prev">Atrás</button>
       <button class="primary generate">Ver recomendaciones</button>
     </div>
