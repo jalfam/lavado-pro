@@ -12,111 +12,137 @@
   <meta name="theme-color" content="#0b6cff">
 </head>
 <body>
+
 <header>
-  <h1>Asistente de Lavado</h1>
-  <p class="sub">Lavadora WF22C6400AV/AX • Secadora DVG24C6370V/AX</p>
+  <div class="header-text">
+    <h1>Asistente de Lavado</h1>
+    <p class="sub">WF22C6400AV/AX · DVG24C6370V/AX · ♻️ eco tips</p>
+  </div>
+  <button id="darkToggle" aria-label="Cambiar modo oscuro/claro">🌙</button>
 </header>
+
+<div class="progress" id="progressDots" role="progressbar" aria-label="Paso actual" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">
+  <div class="progress-dot active" data-dot="1"></div>
+  <div class="progress-dot" data-dot="2"></div>
+  <div class="progress-dot" data-dot="3"></div>
+  <div class="progress-dot" data-dot="4"></div>
+</div>
 
 <main>
   <section id="wizard">
+
+    <!-- Step 1: Category -->
     <div class="card step" data-step="1">
-      <h2>1) ¿Qué vas a lavar?</h2>
-      <div class="grid chips" id="catGroup"></div>
+      <h2>1 · ¿Qué vas a lavar?</h2>
+      <div class="grid chips" id="catGroup" role="group" aria-label="Categoría de ropa"></div>
       <div class="row">
         <label for="desc">Descripción (opcional)</label>
-        <input id="desc" type="text" placeholder="Ej. 2 cobijas con aceite, color claro" list="suggestions">
+        <input id="desc" type="text" placeholder="Ej. cobija con aceite de masaje, color claro" list="suggestions" autocomplete="off">
         <datalist id="suggestions"></datalist>
-        <p class="hint">Elige un chip o escribe. Si solo escribes, se infiere la categoría.</p>
+        <p class="hint">Elige un chip o escribe · Se inferirá la categoría si solo escribes</p>
       </div>
       <div class="row" id="recentsCard" hidden>
         <label>Últimos lavados</label>
         <div class="grid" id="recents"></div>
       </div>
-      <button class="primary next">Siguiente</button>
+      <button class="primary next" style="margin-top:6px;width:100%">Siguiente →</button>
     </div>
 
+    <!-- Step 2: Fabric & soil -->
     <div class="card step" data-step="2" hidden>
-      <h2>2) Tela y detalles</h2>
-      <div class="grid chips" id="fabricGroup"></div>
+      <h2>2 · Tela y detalles</h2>
+      <div class="grid chips" id="fabricGroup" role="group" aria-label="Tipo de tela"></div>
       <div class="row">
         <label>Nivel de suciedad</label>
-        <div class="segmented" id="soil">
-          <button data-soil="light" class="active">Ligero</button>
-          <button data-soil="normal">Normal</button>
-          <button data-soil="heavy">Pesado</button>
+        <div class="segmented" id="soil" role="group" aria-label="Nivel de suciedad">
+          <button data-soil="light" class="active">🌿 Ligero</button>
+          <button data-soil="normal">🟡 Normal</button>
+          <button data-soil="heavy">🔴 Pesado</button>
         </div>
       </div>
-      <div class="row"><label><input type="checkbox" id="oil"> Tiene aceites (p. ej., masaje/cocina)</label></div>
-      <button class="secondary prev">Atrás</button>
-      <button class="primary next">Siguiente</button>
+      <div class="row">
+        <label><input type="checkbox" id="oil"> Tiene aceites (masaje, cocina, etc.)</label>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:6px">
+        <button class="secondary prev" style="flex:1">← Atrás</button>
+        <button class="primary next" style="flex:2">Siguiente →</button>
+      </div>
     </div>
 
+    <!-- Step 3: Preferences -->
     <div class="card step" data-step="3" hidden>
-      <h2>3) Preferencias</h2>
+      <h2>3 · Preferencias</h2>
       <div class="row">
-        <label>¿Vapor (Steam) en lavadora?</label>
-        <div class="segmented" id="steam">
-          <button data-steam="auto" class="active">Auto</button>
+        <label>Vapor (Steam) en lavadora</label>
+        <div class="segmented" id="steam" role="group" aria-label="Vapor">
+          <button data-steam="auto" class="active">✨ Auto</button>
           <button data-steam="on">Sí</button>
           <button data-steam="off">No</button>
         </div>
       </div>
       <div class="row">
-        <label>¿Hygiene Steam (lavadora)?</label>
-        <div class="segmented" id="hsteam">
-          <button data-hsteam="auto" class="active">Auto</button>
+        <label>Hygiene Steam (higiene profunda)</label>
+        <div class="segmented" id="hsteam" role="group" aria-label="Hygiene Steam">
+          <button data-hsteam="auto" class="active">✨ Auto</button>
           <button data-hsteam="on">Forzar</button>
           <button data-hsteam="off">No</button>
         </div>
       </div>
       <div class="row">
-        <label>¿Enjuague extra?</label>
-        <div class="segmented" id="rinse">
-          <button data-rinse="auto" class="active">Auto</button>
+        <label>Enjuague extra</label>
+        <div class="segmented" id="rinse" role="group" aria-label="Enjuague extra">
+          <button data-rinse="auto" class="active">✨ Auto</button>
           <button data-rinse="on">Sí</button>
           <button data-rinse="off">No</button>
         </div>
       </div>
       <div class="row">
         <label>Secadora</label>
-        <div class="segmented" id="dryerPref">
-          <button data-dryer="auto" class="active">Auto</button>
-          <button data-dryer="air">Secar al aire</button>
-          <button data-dryer="skip">No secar</button>
+        <div class="segmented" id="dryerPref" role="group" aria-label="Preferencia de secadora">
+          <button data-dryer="auto" class="active">✨ Auto</button>
+          <button data-dryer="air">🌬️ Al aire</button>
+          <button data-dryer="skip">⛔ No usar</button>
         </div>
-        <p class="hint">“Auto” sugiere ciclo en tu DVG24C6370V/AX. “Secar al aire” da instrucciones sin secadora.</p>
+        <p class="hint">"Auto" sugiere ciclo en tu DVG24C6370V/AX · "Al aire" da instrucciones sin secadora</p>
       </div>
-      <div class="row"><label><input type="checkbox" id="smartthings"> Mostrar presets sugeridos (SmartThings)</label></div>
-      <button class="secondary prev">Atrás</button>
-      <button class="primary generate">Ver recomendaciones</button>
+      <div class="row">
+        <label><input type="checkbox" id="smartthings"> Mostrar nombres de presets SmartThings</label>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:6px">
+        <button class="secondary prev" style="flex:1">← Atrás</button>
+        <button class="primary generate" style="flex:2">Ver recomendaciones ✦</button>
+      </div>
     </div>
 
+    <!-- Step 4: Results -->
     <div class="card step" data-step="4" hidden>
       <h2>Resultado</h2>
       <div id="result"></div>
       <div class="tips" id="tips"></div>
-      <details class="details"><summary>Explicación</summary><div id="explain"></div></details>
+      <details class="details"><summary>¿Por qué estas recomendaciones?</summary><div id="explain"></div></details>
       <div class="card muted" id="drumReminder" hidden></div>
       <div class="ctaRow">
-        <button class="secondary prev">Editar</button>
-        <button class="primary new">Nuevo lavado</button>
+        <button class="secondary prev">✎ Editar</button>
+        <button class="primary new">+ Nuevo lavado</button>
       </div>
     </div>
+
   </section>
 
   <section class="card" id="maintenance">
-    <h2>Mantenimiento</h2>
+    <h2>🔧 Mantenimiento</h2>
     <ul>
-      <li>Ejecuta <strong>Drum Clean+</strong> cada 2–3 meses (uso normal).</li>
+      <li>Ejecuta <strong>Drum Clean+</strong> cada <strong>40 lavados</strong> o cada 2–3 meses.</li>
       <li>Si lavas cobijas con aceite o <em>trapos de cocina</em>, corre <strong>Drum Clean+</strong> después de esa carga.</li>
-      <li>Evita suavizante en ropa deportiva y trapos; usa vinagre en el enjuague si necesitas suavidad.</li>
+      <li>Evita suavizante en ropa deportiva y toallas · usa ½ taza de vinagre blanco en el enjuague si deseas suavidad.</li>
+      <li>Limpia el filtro de pelusas de la secadora después de cada carga.</li>
     </ul>
   </section>
 </main>
 
 <footer>
-  <button id="share" class="ghost">Compartir</button>
-  <a id="install" class="ghost" href="#" hidden>Instalar</a>
+  <button id="share" class="ghost">↑ Compartir</button>
+  <button id="install" class="ghost" hidden>⬇ Instalar app</button>
 </footer>
 
 <script>
